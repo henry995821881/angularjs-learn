@@ -69,7 +69,7 @@
 
 		</div>
 
-		{{goods.name}}
+		{{goods}}
 	</div>
 
 	<script>
@@ -83,7 +83,7 @@
 
 				$http({
 					method : 'POST',
-					url : "/Manager",
+					url : "Manager",
 					data : $.param($scope.goods),
 					// $.param ->use jquery change {name:name,p:p} to name=name&p=p;
 					headers : {
@@ -100,6 +100,7 @@
 			//form reset
 			$scope.formReset = function($event) {
 				var a = $event.target;
+				//alert($.param($scope.goods))
 				$scope.goods={};
 			}
 
