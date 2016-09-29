@@ -4,8 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<!-- <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script> -->
+<script type="text/javascript" src="js/angularjs.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 	var goodsList = [ {
@@ -67,8 +68,8 @@
 					<br>
 					<input type="text" ng-model="tempGoods.number">
 					<br>
-					<a href="javascript:void(0)" ng-click="confirm($event);">ok</a>
-					<a href="javascript:void(0)" ng-click="cancel();">cancel</a>
+					<a href="javascript:void(0)" class="btn btn-default" ng-click="confirm($event);">ok</a>
+					<a href="javascript:void(0)" class="btn btn-default" ng-click="cancel();">cancel</a>
 					
 				</div>
 
@@ -79,13 +80,9 @@
 
 	<script type="text/javascript">
 	$("#editDiv").hide();
-	
-	
+		
 		var app = angular.module("myApp", []);
-		app
-				.controller(
-						"myCtrl",
-						function($scope, $http) {
+		app.controller("myCtrl",function($scope, $http) {
 
 							$scope.goodsList = goodsList;
 
@@ -98,16 +95,37 @@
 							//
 							$scope.confirm = function($event) {
 
-								for (goods in goodsList) {
-
-									if (goods.id == tempGoods.id) {
-
-										goods.price = tempGoods.price;
-										goods.number = tempGoods.price;
+								$http({
+									method : 'POST',
+									url : "editGoods.do",
+									data : $.param($scope.tempGoods),
+									// $.param ->use jquery change {name:name,p:p} to name=name&p=p;
+									headers : {
+										'Content-Type' : 'application/x-www-form-urlencoded'
 									}
-								}
+								// set the headers so angular passing info as form data (not request payload)
+								}).success(function(data) {
 
-								$scope.tempGoods = null;
+									//result
+									if(data){
+										
+										for(goods in goodsList){
+											
+											if(goods.id ==$scope.tempGoods.id){
+												goods.price = $scope.tempGoods.price;
+												goods.number = $scope.tempGoods.number;
+												$("#editDiv").hide();		
+												break;
+												
+											}
+										}
+										
+										
+									}
+
+								});
+
+								
 							}
 
 							//delete
