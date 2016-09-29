@@ -15,60 +15,63 @@
 <body>
 	<div class="container" ng-app="myApp" ng-controller="myController">
 
-		<div class="row">
-			<div class="col-md-10">
 
-				<form class="form-horizontal">
+		<!-- <div class="panel panel-default"> -->
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+			<!-- panel-heading -->
+				<h3>add goods</h3>
+			</div>
+<!-- panel-body -->
+			<div class="panel-body">
 
-					<div class="form-group">
-						<div class="col-md-2">
-							<label class="control-label">name:</label>
-						</div>
-						<div class="col-md-7 col-md-offset-1">
-							<input name="name" type="text" ng-model="goods.name">
-						</div>
+				<div class="row">
+					<div class="col-md-10">
 
+						<form class="form-horizontal">
+
+							<div class="form-group">
+								<div class="col-md-2">
+									<label class="control-label">name:</label>
+								</div>
+								<div class="col-md-7 col-md-offset-1">
+									<input name="name" type="text" ng-model="goods.name">
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-md-2">
+									<label class="control-label">price:</label>
+								</div>
+								<div class="col-md-7 col-md-offset-1">
+									<input type="text" name="price" ng-model="goods.price">
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-md-2">
+									<label class="control-label">number:</label>
+								</div>
+								<div class="col-md-7 col-md-offset-1">
+									<input type="text" name="number" ng-model="goods.number">
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-md-2">
+									<a href="javascript:void(0)" ng-click="formPost();" class="btn btn-default">post</a>
+								</div>
+								<div class="col-md-2">
+									<a href="javascript:void(0)" ng-click="formReset($event);" class="btn btn-default">reset</a>
+								</div>
+							</div>
+						</form>
 					</div>
-					<div class="form-group">
 
-						<div class="col-md-2">
-							<label class="control-label">price:</label>
-						</div>
-						<div class="col-md-7 col-md-offset-1">
-							<input type="text" name="price" ng-model="goods.price">
-						</div>
-					</div>
-
-					<div class="form-group">
-
-						<div class="col-md-2">
-							<label class="control-label">number:</label>
-						</div>
-						<div class="col-md-7 col-md-offset-1">
-							<input type="text" name="number" ng-model="goods.number">
-						</div>
-					</div>
-					<div class="form-group">
-
-						<div class="col-md-2">
-							<a href="javascript:void(0)" ng-click="formPost();" class="btn btn-default">post</a>
-						</div>
-						<div class="col-md-2">
-							<a href="javascript:void(0)" ng-click="formReset($event);" class="btn btn-default">reset</a>
-						</div>
-					</div>
-
-
-
-				</form>
-
-
-
+				</div>
 
 			</div>
-
 		</div>
-
 		{{goods}}
 	</div>
 
@@ -101,7 +104,7 @@
 			$scope.formReset = function($event) {
 				var a = $event.target;
 				//alert($.param($scope.goods))
-				$scope.goods={};
+				$scope.goods = {};
 			}
 
 			//
